@@ -1,0 +1,52 @@
+<div style="padding: 13px;">
+    <mat-spinner *ngIf="pictures.length === 0"></mat-spinner>
+    
+    <!-- need a start date, end date control -->
+    <div>
+        <mat-form-field>
+            <mat-label>From:</mat-label>
+            <input matInput [matDatepicker]="not_before"
+                (dateChange)="dateChange('start_change', $event)"
+                [(ngModel)] = "start_date">
+            <mat-datepicker-toggle matSuffix [for]="not_before"></mat-datepicker-toggle>
+            <mat-datepicker startView=year [startAt]="epoch" #not_before></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Up To:</mat-label>
+            <input matInput [matDatepicker]="not_after"
+                (dateChange)="dateChange('end_change', $event)"
+                [(ngModel)] = "end_date">
+            <mat-datepicker-toggle matSuffix [for]="not_after"></mat-datepicker-toggle>
+            <mat-datepicker startView=year #not_after></mat-datepicker>
+        </mat-form-field>
+        <!-- TODO also need a reset button -->
+    </div>
+    
+    <!-- need some radio buttons to build a filter -->
+    <mat-card *ngFor="let picture of pictures" style="margin-top:10px;">
+        <mat-card-header>
+            <mat-card-title>{{picture[3]}}</mat-card-title>
+            <mat-card-subtitle>{{picture[0]}} {{picture[1]}} {{picture[2]}}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <img style="height:50%; width: 50%;" src="{{ picture[3] }}" />
+            <!-- this should be a button bar where each button removes the same tag -->
+            <p>{{ picture[4] }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+      <button (click) = "toggleTag(picture, $event)" mat-button> Category 1 </button>
+      <button (click) = "toggleTag(picture, $event)" mat-button> Category 2 </button>
+      <button (click) = "toggleTag(picture, $event)" mat-button> Category 3 </button>
+      <button (click) = "toggleTag(picture, $event)" mat-button> Other </button>
+      <button (click) = "toggleTag(picture, $event)" mat-button> Delete </button>
+    </mat-card-actions>
+    </mat-card>
+    <div>
+        <!-- want to disable any that don't make sense, first+before on first page, last+after on last? -->
+        <button (click) ="firstPage()" mat-button> First </button>
+        <button (click) ="beforePage()" mat-button> Previous </button>
+        <button (click) ="afterPage()" mat-button> Next </button>
+        <button (click) ="lastPage()" mat-button> Last </button>
+    </div>
+</div>

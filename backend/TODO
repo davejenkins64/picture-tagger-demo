@@ -1,0 +1,32 @@
+package so to run with gunicorn?
+
+make sure or set media-type to application/vnd.api+json.
+
+change json output to have a "links" section and a "data" section.
+links is a url to first, prev, next, last.
+could status be in a "meta" section?
+
+tuturoial assumes the first, prev, next, last values are in the 
+Links: header, but JSON:API says they are in the body.
+
+query string should contain page[size], page[first], page[before], page[after],
+page[last] etc.  This one is tough with webargs because python will think
+it is an array?
+
+Make the tags buttons with a x in them to remove them by clicking on them.
+
+Hook up the back-end to allow patch to change tags (or post)?
+
+Each picture should be a hash/dictionary of name value pairs and not an array.
+this will change the front end too.
+
+need a way to remember the range they specify and the current page in it.
+no range defaults to 0000:00 to 9999:99, and they can specify one or the 
+other or both
+
+DEFER: need also to remember the filter in affect.
+but perhaps don't bother filtering now?
+
+If they reset the range, keep the filter
+if they reset the filter, keep the range
+

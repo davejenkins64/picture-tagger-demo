@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ -x $WEBSERVER_PICTURE_HOME ]
+then
+	echo "FATAL: set WEBSERVER_PICTURE_HOME to the directory where you files are"
+	exit 1
+fi
+
+# so that the web server can read the jpg's
+# take the 4th - nth columns as a relative path and file name
+# add /home/backup, then make sure all directories are chmod o+rx
+# and all files are chmod o+r?
+
+cut -d' ' -f4- unique_pictures_sorted | sed -e's/^"//' -e's/"$//' |\
+while read rfile
+do
+	file="$PICTURE_HOME/$rfile"
+	echo "changing $file"
+	chmod o+r "$file"
+	dir=$(dirname "$file")
+	while [ -n "$dir" -a "$PICTURE_HOME" != "$dir" ]
+	do
+		echo "changing dir [$dir]"
+		chmod o+rx "$dir"
+		dir=$(dirname "$dir")
+	done
+done 
+
