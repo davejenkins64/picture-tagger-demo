@@ -10,7 +10,7 @@ import { HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 })
 export class UniquePicturesService {
 
-  private SERVER_ADDRESS = "http://192.168.21.5:5000";
+  private SERVER_ADDRESS = "http://127.0.0.1:5000";
   private SERVER_URI = "/api/v1/pictures";
   // this may not be needed if flask-cors resolves the problem 
   //private httpOptions = {

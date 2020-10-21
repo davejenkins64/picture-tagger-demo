@@ -20,3 +20,14 @@ deleting.
 
 The current state of the front-end suffices for the initial tagging,
 but a better viewer to review pictures by tag is needed.
+
+## Operations
+For now, I assume that the frontend is run on a machine with node
+and Angular installed.  To test, assuming the 'npm install'
+has been run to recreate the node_modules directory, 
+edit one file:
+To change the IP address where angular's built-in server will listen.
+It is hard-coded to 127.0.0.1 for now.
+
+Then simply run 'ng serve' from this directory and point a browser at 
+port 4200 on the address you have chosen above.
